@@ -8,12 +8,17 @@ public class Main {
         Contenedor c = new Contenedor(3,3,1,"España",
                 "123123123123123","Albania","Expres");
 
+        Carguero carg = new Carguero();
+
+        for(int i=0; i<301; i++)
+            carg.apilarContenedor(c);
 
         h.apilarContenedor(a);
-        h.apilarContenedor(b);
-        h.apilarContenedor(c);
-        h.apilarContenedor(c);
-        System.out.println(h.toString());
+        h.apilarContenedor(a);
+        h.apilarContenedor(a);
+        h.apilarContenedor(a);
+        System.out.println(carg.toString());
+
 
     }
 }

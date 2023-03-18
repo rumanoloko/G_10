@@ -1,6 +1,7 @@
 public class Hub {
 
     private Contenedor [][] complex;
+    private byte libresPrioridad1 = 10, libresPrioridad2 = 10, libresPrioridad3 = 100;
     public Hub(){
         complex = new Contenedor[10][12];
     }
@@ -13,8 +14,9 @@ public class Hub {
                 if(complex[j][i]==null)
                     continue;
                 if(complex[j][i].getItentificador()==c.getItentificador())
-                    error = true;
-                break;
+                    //error = true;
+                    error = false;
+                    break;
             }
         }
         if(error){
@@ -27,6 +29,7 @@ public class Hub {
                 for(int i=9; i>=0; i--){
                     if(complex[i][0]==null){
                         complex[i][0]=c;
+                        libresPrioridad1--;
                         break;
                     }
                 }
@@ -39,6 +42,7 @@ public class Hub {
                 for(int i=9; i>=0; i--){
                     if(complex[i][1]==null){
                         complex[i][1]=c;
+                        libresPrioridad2--;
                         break;
                     }
                 }
@@ -52,27 +56,26 @@ public class Hub {
                         if(complex[j][i]==null){
                             hueco = true;
                             complex[j][i]=c;
+                            libresPrioridad3--;
                             break;
                         }
                     }
                 }
-                if(!hueco)
-                    System.out.println("¡ERROR! Ya no caben más contenedores de prioridad 3");
+                if(!hueco) System.out.println("¡ERROR! Ya no caben más contenedores de prioridad 3");
             }
         }
     }
 
     public void desapilarContenedor(int columna){
 
-        if(columna<1 && columna>12)
-            System.out.println("la columna " + columna + " no existe");
+        if(columna<1 && columna>12) System.out.println("la columna " + columna + " no existe");
 
-        if(columna==1 && complex[9][0]==null)
-            System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
+        if(columna==1 && complex[9][0]==null) System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
         if(columna==1 && complex[9][0]!=null){
             for(int i=0; i<10; i++){
                 if(complex[i][0]!=null){
                     complex[i][0]=null;
+                    libresPrioridad1++;
                     break;
                 }
             }
@@ -84,6 +87,7 @@ public class Hub {
             for(int i=0; i<10; i++){
                 if(complex[i][1]!=null){
                     complex[i][1]=null;
+                    libresPrioridad2++;
                     break;
                 }
             }
@@ -91,22 +95,39 @@ public class Hub {
 
         if(columna>2 && columna<13){
             boolean vacio=false;
-            for(int i=0; i<10; i++){
-                if(complex[i][columna-1]!=null){
-                    complex[i][columna-1]=null;
-                    vacio = true;
-                    break;
+            if(complex[9][columna-1]==null)
+                System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
+            else{
+                for(int i=0; i<10; i++){
+
+                    if(complex[i][columna-1]!=null){
+                        complex[i][columna-1]=null;
+                        libresPrioridad3++;
+                        break;
+                    }
                 }
             }
-            if(!vacio)
-                System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
         }
 
     }
 
     public String toString(){
-        String s="";
+        String s="  ";
+        for(int j=0; j<12; j++) {
+            if(j<9)
+                s += "   " + (j+1);
+            if(j>=9)
+                s += "  " + (j+1);
+        }
+        s+= "\n";
+
         for(int i=0; i<10; i++){
+            if(i<9)
+                s += " " + (i+1) + ": ";
+            if(i==9)
+                s += (i+1) + ": ";
+
+
             for(int j=0; j<12; j++){
                 if(complex[i][j]==null)
                     s += "[ ] ";
@@ -124,12 +145,12 @@ public class Hub {
         return s;
     }
 
-    public void mostrarDatosContenedor(int ide){
+    public void mostrarDatosContenedor(int id){
         boolean presente=false;
         for(int i=0; i<10; i++){
             for(int j=0; j<12; j++){
 
-                if(complex[i][j]!=null && complex[i][j].getItentificador()==ide){
+                if(complex[i][j]!=null && complex[i][j].getItentificador()==id){
                     presente=true;
                     System.out.println("Identificador: " + complex[i][j].getItentificador() +
                             "\nPrioridad: " + complex[i][j].getPrioridad() +
@@ -142,7 +163,7 @@ public class Hub {
 
             }
         }
-        if(!presente) System.out.println("No existe ningún contenecodor con el identificador " + ide);
+        //if(!presente) System.out.println("No existe ningún contenecodor con el identificador " + ide);
     }
 
     public int contenedoresPais(String país){
@@ -156,5 +177,17 @@ public class Hub {
             }
         }
         return cantidad;
+    }
+
+    public byte getLibresPrioridad1() {
+        return libresPrioridad1;
+    }
+
+    public byte getLibresPrioridad2() {
+        return libresPrioridad2;
+    }
+
+    public byte getLibresPrioridad3() {
+        return libresPrioridad3;
     }
 }
