@@ -55,10 +55,10 @@ public class Hub {
     public Contenedor desapilarContenedor(int columna) {
 
         Contenedor c = null;
-        if (columna < 1 && columna > 12) System.out.println("la columna " + columna + " no existe");
+        if (columna < 1 && columna > 12){} //System.out.println("la columna " + columna + " no existe");
 
-        if (columna == 1 && complex[9][0] == null)
-            System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
+        if (columna == 1 && complex[9][0] == null){}
+            //System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
         if (columna == 1 && complex[9][0] != null) {
             for (int i = 0; i < 10; i++) {
                 if (complex[i][0] != null) {
@@ -70,8 +70,8 @@ public class Hub {
             }
         }
 
-        if (columna == 2 && complex[9][1] == null)
-            System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
+        if (columna == 2 && complex[9][1] == null){}
+            //System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
         if (columna == 2 && complex[9][1] != null) {
             for (int i = 0; i < 10; i++) {
                 if (complex[i][1] != null) {
@@ -85,8 +85,8 @@ public class Hub {
 
         if (columna > 2 && columna < 13) {
             boolean vacio = false;
-            if (complex[9][columna - 1] == null)
-                System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
+            if (complex[9][columna - 1] == null){}
+                //System.out.println("No hay contenedores en la columna " + columna + " para desapilar");
             else {
                 for (int i = 0; i < 10; i++) {
 

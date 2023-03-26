@@ -10,24 +10,24 @@ public class Contenedor {
         this.itentificador = itentificador;
         if(prioridad>=0 && prioridad<=3)
             this.prioridad = prioridad;
-        else System.out.println("ERROR");
+        //else System.out.println("ERROR");
 
         if(peso>=1)
             this.peso = peso;
-        else System.out.println("ERROR");
+        //else System.out.println("ERROR");
 
         this.paísProcedencia = paísProcedencia;
         if(descripción.length()<=100)
             this.descripción = descripción;
-        else System.out.println("ERROR");
+        //else System.out.println("ERROR");
 
         if(empresaEmisora.length()<=20)
             this.empresaEmisora = empresaEmisora;
-        else System.out.println("ERROR");
+        //else System.out.println("ERROR");
 
         if(empresaReceptora.length()<=20)
             this.empresaReceptora = empresaReceptora;
-        else System.out.println("ERROR");
+        //else System.out.println("ERROR");
     }
 
     public int getItentificador() {
@@ -68,7 +68,7 @@ public class Contenedor {
 
     public void setDescripción(String descripción) {
         if(descripción.length()<=100) this.descripción = descripción;
-        else System.out.println("Tamaño de descripción excede los 100 caracteres");
+        //else System.out.println("Tamaño de descripción excede los 100 caracteres");
     }
 
     public String getEmpresaEmisora() {
@@ -77,7 +77,7 @@ public class Contenedor {
 
     public void setEmpresaEmisora(String empresaEmisora) {
         if(empresaEmisora.length()<=20) this.empresaEmisora = empresaEmisora;
-        else System.out.println("Tamaño del nombre de la empresa emisora excede los 20 caracteres");
+        //else System.out.println("Tamaño del nombre de la empresa emisora excede los 20 caracteres");
     }
 
     public String getEmpresaReceptora() {
@@ -86,6 +86,6 @@ public class Contenedor {
 
     public void setEmpresaReceptora(String empresaReceptora) {
         if(empresaReceptora.length()<=20) this.empresaReceptora = empresaEmisora;
-        else System.out.println("Tamaño del nombre de la empresa recetora excede los 20 caracteres");
+        //else System.out.println("Tamaño del nombre de la empresa recetora excede los 20 caracteres");
     }
 }

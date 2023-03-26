@@ -8,21 +8,9 @@ public class Carguero {
         }
     }
 
-    public boolean Idduplicado(Contenedor c){
-        for(int i=0; i< carguero.length; i++){
-            for(int j=0; j<12; j++){
-                for(int k=9; k>=0; k--){
-                    if(carguero[i].getComplex()[k][j]!=null && carguero[i].getComplex()[k][j].getItentificador()==c.getItentificador())
-                        return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public void apilarContenedor(Contenedor c){
         boolean hayHueco = false;
-        if(!Idduplicado(c) || Idduplicado(c)){
+        if(!Idduplicado(c)){
             switch (c.getPrioridad()){
 
                 case 1:
@@ -34,8 +22,8 @@ public class Carguero {
                             break;
                         }
                     }
-                    if(!hayHueco)
-                        System.out.println("No caben más contenedores de prioridad 1 en todo el carguero");
+                    if(!hayHueco){}
+                        //System.out.println("No caben más contenedores de prioridad 1 en todo el carguero");
                     break;
 
                 case 2:
@@ -47,8 +35,8 @@ public class Carguero {
                             break;
                         }
                     }
-                    if(!hayHueco)
-                        System.out.println("No caben más contenedores de prioridad 2 en todo el carguero");
+                    if(!hayHueco){}
+                        //System.out.println("No caben más contenedores de prioridad 2 en todo el carguero");
                     break;
 
                 default:
@@ -60,14 +48,26 @@ public class Carguero {
                             break;
                         }
                     }
-                    if(!hayHueco)
-                        System.out.println("No caben más contenedores de prioridad 3 en todo el carguero");
+                    if(!hayHueco){}
+                        //System.out.println("No caben más contenedores de prioridad 3 en todo el carguero");
                     break;
             }
         } else{
-            System.out.println("El id no es unico para ese contenedor");
+            //System.out.println("El id no es unico para ese contenedor");
         }
 
+    }
+
+    public boolean Idduplicado(Contenedor c){
+        for(int i=0; i< carguero.length; i++){
+            for(int j=0; j<12; j++){
+                for(int k=9; k>=0; k--){
+                    if(carguero[i].getComplex()[k][j]!=null && carguero[i].getComplex()[k][j].getItentificador()==c.getItentificador())
+                        return true;
+                }
+            }
+        }
+        return false;
     }
 
     public Contenedor desapilarContenedor(int hub, int columna){
@@ -96,5 +96,9 @@ public class Carguero {
         for(int i=0; i< carguero.length; i++)
             s += "\nHub " + (i+1) + ":\n" + carguero[i].toString();
         return s;
+    }
+
+    public Hub[] getCarguero() {
+        return carguero;
     }
 }
